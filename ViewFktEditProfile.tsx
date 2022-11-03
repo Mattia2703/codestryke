@@ -176,7 +176,6 @@ export const ViewFktEditProfile: React.FunctionComponent<IViewFktEditProfileProp
             </div>
             <div className={styles.detailsComponentContainers}>
                 <div className={styles.detailsTitle}>{strings.DP_Deputies}</div>
-                {/* hier müssen die Deputies rein */}
             </div>
             <div className={styles.detailsComponentContainers}>
                 <div className={styles.detailsTitle}>{strings.DP_Interests}</div>
