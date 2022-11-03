@@ -31,13 +31,6 @@ export default class ServiceForDeputies {
     }
 
 
-    /* public getProfilePic(upnMail: string){
-       
-        let pictureUrl = "/_vti_bin/DelveApi.ashx/people/profileimage?userId="+upnMail;
-        pictureUrl += "&size=M";
-        return(pictureUrl);
-    }*/
-
 
     public async getUserByUPN(upnMail:string=undefined):Promise<IServiceResultDeputies>{
         let result:IServiceResultDeputies = undefined;
@@ -109,20 +102,8 @@ export default class ServiceForDeputies {
         ////https://github.com/pnp/pnpjs/issues/2238
            let usermailSave = usermail.replace("#","%23");
            usermailSave = usermailSave.replace("#","%23");
-           //if(usermail.toLocaleLowerCase().indexOf("#ext#")>=0){
-              /* let client = await this._webPartContext.msGraphClientFactory.getClient("3");
-              graphResult = await client.api('/users/'+usermail)              
-              .select('streetAddress, city, state, postalCode, country, CompanyName')              
-              .get();*/
-              //%23
-           //} else {
-                //https://graph.microsoft.com/v1.0/users/5cdab694-ac72-4812-81c3-412a893a536f
-                
-           //}
-           ////
            graphResult = await this._graph.users.getById(usermailSave).select("CompanyName")();
        } 
-       //bitte eine nullpointer Exception abfangen
        const userDataFromGraph: IUserDataFromGraphAADMin = {
         
          CompanyName: graphResult.companyName
@@ -134,13 +115,6 @@ export default class ServiceForDeputies {
 
     private prepareUserObjORM(profile:any,profileProperties:any, userDataFromGraph?: IUserDataFromGraphAADMin):IDeputiesProfil{
 
-        //Profile Picture
-        //alle Felder bitte abfangen auf undefined / null!!!
-
-
-
-        console.log(profileProperties);
-        
 
         const userObj:IDeputiesProfil = {
             DisplayName:profile.DisplayName ? profile.DisplayName : "-",
